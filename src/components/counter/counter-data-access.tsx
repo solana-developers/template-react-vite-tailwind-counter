@@ -15,7 +15,7 @@ export function useCounterProgram() {
   const transactionToast = useTransactionToast()
   const provider = useAnchorProvider()
   const programId = useMemo(() => getCounterProgramId(cluster.network as Cluster), [cluster])
-  const program = getCounterProgram(provider)
+  const program = useMemo(() => getCounterProgram(provider, programId), [provider, programId])
 
   const accounts = useQuery({
     queryKey: ['counter', 'all', { cluster }],

@@ -11,8 +11,8 @@ export { Counter, CounterIDL }
 export const COUNTER_PROGRAM_ID = new PublicKey(CounterIDL.address)
 
 // This is a helper function to get the Counter Anchor program.
-export function getCounterProgram(provider: AnchorProvider) {
-  return new Program(CounterIDL as Counter, provider)
+export function getCounterProgram(provider: AnchorProvider, address?: PublicKey) {
+  return new Program({ ...CounterIDL, address: address ? address.toBase58() : CounterIDL.address } as Counter, provider)
 }
 
 // This is a helper function to get the program ID for the Counter program depending on the cluster.
@@ -21,7 +21,7 @@ export function getCounterProgramId(cluster: Cluster) {
     case 'devnet':
     case 'testnet':
       // This is the program ID for the Counter program on devnet and testnet.
-      return new PublicKey('CounNZdmsQmWh7uVngV9FXW2dZ6zAgbJyYsvBpqbykg')
+      return new PublicKey('coUnmi3oBUtwtd9fjeAvSsJssXh5A5xyPbhpewyzRVF')
     case 'mainnet-beta':
     default:
       return COUNTER_PROGRAM_ID
