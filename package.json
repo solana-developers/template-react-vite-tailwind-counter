@@ -62,7 +62,7 @@
           "src"
         ]
       },
-      "placeholder": {
+      "scaffold": {
         "to": "{{name}}",
         "paths": ["src"]
       }
